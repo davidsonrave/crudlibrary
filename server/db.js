@@ -1,25 +1,11 @@
-import { createPool } from "mysql2/promise";
+// Importar la función createPool del módulo mysql2/promise
+import { createPool } from 'mysql2/promise';
 
-export class Db {
-  constructor() {
-    this.pool = createPool({
-      host: "localhost",
-      port: 3306,
-      user: "root",
-      password: "",
-      database: "biblioteca",
-    });
-  }
-
-  async testConnection() {
-    try {
-      const connection = await this.pool.getConnection();
-      console.log("Conexión exitosa a la base de datos!");
-      connection.release(); // Importante liberar la conexión después de usarla
-      return true;
-    } catch (error) {
-      console.error("Error de conexión a la base de datos:", error.message);
-      return false;
-    }
-  }
-}
+// Configurar la conexión a la base de datos utilizando createPool
+export const db = createPool({
+    host: 'localhost',   // Dirección del servidor de la base de datos
+    port: 3306,          // Puerto de la base de datos
+    user: 'root',        // Usuario de la base de datos
+    password: '',        // Contraseña de la base de datos
+    database: 'biblioteca'  // Nombre de la base de datos
+});
